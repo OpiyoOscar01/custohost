@@ -3,15 +3,22 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Custospark\Traits\Traits\HasAppRoles;
+use Custospark\Traits\Models\Permission;
+use Custospark\Traits\Models\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable,HasRoles;
+    use HasFactory, Notifiable,HasApiTokens,HasAppRoles;
+
+    protected $connection = 'auth_db';
 
 
     /**
@@ -52,6 +59,14 @@ class User extends Authenticatable
             'birthdate' => 'date',
         ];
     }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user')->withTimestamps();
+    }
+    public function permissions()
+{
+    return $this->belongsToMany(Permission::class, 'permission_user')->withTimestamps();
+}
 
     public function hostels()
     {

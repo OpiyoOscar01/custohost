@@ -3,8 +3,21 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Reset Password | CustoHost</title>
-
+  <meta name="description" content="@yield('description', 'CustoHost: A cutting-edge SaaS platform designed to streamline hostel and rental property management, ensuring efficiency and growth')" />
+    <meta name="keywords" content="@yield('keywords', 'CustoHost, hostel management, property management, rental properties, SaaS, automation, efficiency')" />
+    <meta name="author" content="@yield('author', 'CustoHost Team')" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Mobile Web App Optimization -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="CustoHost" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-title" content="CustoHost" />
+    
+      <!-- Page Title -->
+      <title>@yield('title', 'CustoHost') - Reset Password.</title>
+      <link rel="icon" href="{{ asset('images/v8.png') }}" type="image/x-icon" />  
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 

@@ -17,7 +17,7 @@ class HostelRequest extends FormRequest
             'name' => 'required|string|max:255',
             'address' => 'required|string',
             'description' => 'nullable|string',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:5048',
             'status' => 'required|in:active,inactive,maintenance',
             'total_rooms' => 'required|integer|min:0',
             'available_rooms' => 'required|integer|min:0|lte:total_rooms',
@@ -30,7 +30,7 @@ class HostelRequest extends FormRequest
             'name.required' => 'The hostel name is required.',
             'address.required' => 'The hostel address is required.',
             'photo.image' => 'The uploaded file must be an image.',
-            'photo.max' => 'The image size should not exceed 2MB.',
+            'photo.max' => 'The image size should not exceed 5MB.',
             'total_rooms.required' => 'Please specify the total number of rooms.',
             'available_rooms.lte' => 'Available rooms cannot exceed total rooms.',
         ];

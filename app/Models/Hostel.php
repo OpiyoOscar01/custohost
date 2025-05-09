@@ -20,6 +20,8 @@ class Hostel extends Model
         'total_rooms',
         'available_rooms',
     ];
+    protected $connection = 'mysql'; // default local DB
+
 
     protected $casts = [
         'total_rooms' => 'integer',

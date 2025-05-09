@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Observers\UserObserver;
 use App\Http\Middleware\EnsureUserIsHostelManager;
 use App\Http\Middleware\EnsureUserIsStudent;
+use Custospark\Traits\Models\App;
 
 class DashboardController extends Controller
 {
@@ -29,8 +30,8 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $userRole = $user->getRoleNames()->first(); // Get the user's role
-    
+   
+        $userRole=Auth::user()->getAppRoleNames(3)->first();
         switch ($userRole) {
             case 'hostel_manager':
                 // Get all hostels owned by the user
@@ -42,13 +43,21 @@ class DashboardController extends Controller
                 $pendingBookings = $hostelIds->map(fn($id) => $this->bookingService->getPendingBookings($id))->flatten();
                 $totalRevenue = $hostelIds->sum(fn($id) => $this->paymentService->getTotalPaymentsForHostel($id));
     
-               
                 return view('dashboard.hostel-manager', compact(
                     'hostels', 'activeBookings', 'pendingBookings', 'totalRevenue'
                 ));
     
             case 'student':
                 // Get student's bookings
+                $bookings = $this->bookingService->getBookingsByStudent($user->id);
+                $activeBooking = $bookings->firstWhere('status', 'confirmed');
+                $pendingPayments = $this->paymentService->getPendingPaymentsForHostel($activeBooking?->hostel_id ?? 0);
+    
+                return view('dashboard.student', compact(
+                    'bookings', 'activeBooking', 'pendingPayments'
+                ));
+            case 'client':
+                // Get client's bookings
                 $bookings = $this->bookingService->getBookingsByStudent($user->id);
                 $activeBooking = $bookings->firstWhere('status', 'confirmed');
                 $pendingPayments = $this->paymentService->getPendingPaymentsForHostel($activeBooking?->hostel_id ?? 0);

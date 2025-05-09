@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CustoHost- Modern Hostel Management</title>
-    <!-- Bootstrap 5 CSS -->
+    <meta name="description" content="@yield('description', 'CustoHost: A cutting-edge SaaS platform designed to streamline hostel and rental property management, ensuring efficiency and growth')" />
+    <meta name="keywords" content="@yield('keywords', 'CustoHost, hostel management, property management, rental properties, SaaS, automation, efficiency')" />
+    <meta name="author" content="@yield('author', 'CustoHost Team')" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Mobile Web App Optimization -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="CustoHost" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-title" content="CustoHost" />
+    <link rel="icon" href="{{ asset('images/v8.png') }}" type="image/x-icon" />    
+
+    
+      <!-- Page Title -->
+      <title>@yield('title', 'CustoHost') - Home</title>    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <!-- Tailwind CSS -->
@@ -91,24 +108,56 @@
             <!-- Logo -->
             <div class="flex items-center space-x-3">
                 <i class="fas fa-home text-2xl"></i>
-                <span class="font-bold text-2xl">Hostel<span class="text-amber-300">Hub</span></span>
+                <span class="font-bold text-2xl">Custo<span class="text-amber-300">Host</span></span>
             </div>
             
             <!-- Desktop Navigation -->
             <ul class="hidden md:flex space-x-8 items-center">
-                <li><a href="#home" class="nav-link hover:text-amber-300 transition">Home</a></li>
-                <li><a href="#features" class="nav-link hover:text-amber-300 transition">Features</a></li>
-                <li><a href="#rooms" class="nav-link hover:text-amber-300 transition">Rooms</a></li>
-                <li><a href="#facilities" class="nav-link hover:text-amber-300 transition">Facilities</a></li>
-                <li><a href="#pricing" class="nav-link hover:text-amber-300 transition">Pricing</a></li>
-                <li><a href="#testimonials" class="nav-link hover:text-amber-300 transition">Testimonials</a></li>
-                <li><a href="#faq" class="nav-link hover:text-amber-300 transition">FAQ</a></li>
                 <li>
-                    <a href="{{route('login')}}" class="bg-amber-400 hover:bg-amber-500 text-white px-6 py-2 rounded-full font-semibold ml-4 transition animate__animated animate__pulse animate__infinite">
-                        Account <i class="fas fa-arrow-right ml-2"></i>
+                    <a href="#home" class="nav-link hover:text-amber-300 transition flex items-center gap-1">
+                        <i class="bi bi-house-door-fill"></i> Home
                     </a>
                 </li>
+                <li>
+                    <a href="#features" class="nav-link hover:text-amber-300 transition flex items-center gap-1">
+                        <i class="bi bi-stars"></i> Features
+                    </a>
+                </li>
+                <li>
+                    <a href="#rooms" class="nav-link hover:text-amber-300 transition flex items-center gap-1">
+                        <i class="bi bi-door-open-fill"></i> Rooms
+                    </a>
+                </li>
+                <li>
+                    <a href="#facilities" class="nav-link hover:text-amber-300 transition flex items-center gap-1">
+                        <i class="bi bi-building"></i> Facilities
+                    </a>
+                </li>
+                <li>
+                    <a href="#pricing" class="nav-link hover:text-amber-300 transition flex items-center gap-1">
+                        <i class="bi bi-currency-dollar"></i> Pricing
+                    </a>
+                </li>
+                <li>
+                    <a href="#testimonials" class="nav-link hover:text-amber-300 transition flex items-center gap-1">
+                        <i class="bi bi-chat-dots-fill"></i> Testimonials
+                    </a>
+                </li>
+                <li>
+                    <a href="#faq" class="nav-link hover:text-amber-300 transition flex items-center gap-1">
+                        <i class="bi bi-question-circle-fill"></i> FAQ
+                    </a>
+                </li>
+                <li>
+                    <form action="{{ route('login.redirect') }}" method="GET">
+                        <input type="hidden" name="app" value="custohost">
+                        <button type="submit" class="flex items-center gap-2 bg-orange-300 text-white font-semibold rounded-full px-3 py-1 hover:bg-orange-400 hover:shadow-md transition duration-300 text-sm">
+                            <i class="bi bi-key-fill"></i> Account
+                        </button>
+                    </form>
+                </li>
             </ul>
+            
             
             <!-- Mobile Menu Button -->
             <button class="md:hidden text-white focus:outline-none" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -921,7 +970,7 @@
                     <p class="text-xl mb-8">Limited rooms available for the upcoming semester. Apply now to secure your spot!</p>
                     
                     <div class="flex flex-wrap gap-4">
-                        <a href="register.html" class="bg-white hover:bg-gray-100 text-sky-500 px-8 py-4 rounded-full font-bold transition duration-300 transform hover:scale-105">
+                        <a href="{{route('login')}}" class="bg-white hover:bg-gray-100 text-sky-500 px-8 py-4 rounded-full font-bold transition duration-300 transform hover:scale-105">
                             Apply Now <i class="fas fa-arrow-right ml-2"></i>
                         </a>
                         <a href="#contact" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold transition duration-300 hover:bg-white hover:text-sky-500">

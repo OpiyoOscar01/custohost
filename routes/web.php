@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
     HostelController,
@@ -17,6 +18,16 @@ use App\Http\Middleware\CheckRole;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+/**Login Redirect */
+Route::get('/login/custospark', function () {
+
+    return redirect()->away('http://custospark.test:8000/login?redirect=' . urlencode(request()->fullUrl()));
+})->name('login.redirect');
+
+Route::get('/login/redirect',[AuthenticatedSessionController::class,'loginWithToken'])->name('login.with.token');
+
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -35,7 +46,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // Route::group(['middleware' => ['auth', 'role:student']], function () {
-Route::group(['auth'], function () {
+Route::group(['middleware' => ['sso.auth']], function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -52,7 +63,7 @@ Route::group(['auth'], function () {
 });
  // Student Routes
 //  Route::middleware(['student'])->group(function () {
- Route::middleware(['auth'])->group(function () {
+ Route::middleware(['sso.auth'])->group(function () {
     // Browse Hostels
     Route::get('/hostels/browse', [HostelController::class, 'browse'])->name('hostels.browse');
     Route::get('/hostels/{hostel}/details', [HostelController::class, 'details'])->name('hostels.details');

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 
-class PermissionController extends Controller
+class PermissionControllerDemo extends Controller
 {
     public function __construct()
     {

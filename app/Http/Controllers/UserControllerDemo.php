@@ -9,7 +9,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class UserControllerDemo extends Controller
 {
     public function __construct()
     {
