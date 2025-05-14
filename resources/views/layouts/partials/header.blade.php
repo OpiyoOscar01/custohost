@@ -187,15 +187,15 @@
                         <i class="bi bi-wallet2 mr-2"></i> Payments
                     </a>
                 </li>
-                <li>
-                  <form action="{{ env('APP_ENV') === 'local' ? 'http://custospark.test:8000/sso/logout' : 'https://custospark.com/sso/logout' }}" method="GET" class="w-full inline">
-                      <!-- Pass the 'app' URL parameter dynamically -->
-                      <input type="hidden" name="app" value="{{ request()->query('app', 'custohost') }}">
-                      <button type="submit" class="block w-full px-4 py-2 hover:bg-red-100 flex items-center rounded-md text-red-600 bg-transparent border-0">
-                          <i class="bi bi-box-arrow-right mr-2"></i> Logout
-                      </button>
-                  </form>
-              </li>
+                        <li>
+          <form action="{{ env('APP_ENV') === 'local' ? 'http://custospark.test:8000/sso/logout' : 'https://custospark.com/sso/logout' }}" method="GET" class="w-full inline">
+              <!-- Pass the 'app' URL parameter dynamically -->
+              <input type="hidden" name="app" value="{{ request()->query('app', 'custohost') }}">
+              <button type="submit" class="block w-full px-4 py-2 hover:bg-red-100 flex items-center rounded-md text-red-600 bg-transparent border-0">
+                  <i class="bi bi-box-arrow-right mr-2"></i> Logout
+              </button>
+          </form>
+      </li>
             </ul>
         </div>
     </div>
